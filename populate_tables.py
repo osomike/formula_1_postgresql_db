@@ -12,8 +12,8 @@ for f_i in glob.glob('f1_dataset/*.csv'):
     table_name = os.path.basename(f_i).split('.')[0]
 
     database = 'ae_training'
-    user = 'dip_admin'
-    password = 'Digi_rOOt123!'
+    user = ''
+    password = ''
     host = 'dip-analytics-engineer-training-postgresql.postgres.database.azure.com'
     port = '5432'
 
