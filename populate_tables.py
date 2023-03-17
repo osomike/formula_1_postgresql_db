@@ -11,16 +11,15 @@ for f_i in glob.glob('f1_dataset/*.csv'):
 
     table_name = os.path.basename(f_i).split('.')[0]
 
-    database = 'ae_training'
-    user = ''
-    password = ''
-    host = 'dip-analytics-engineer-training-postgresql.postgres.database.azure.com'
-    port = '5432'
+    database = os.environ.get('DB_DATABASE_NAME')
+    user = os.environ.get('DB_USER')
+    password = os.environ.get('DB_PASSWORD')
+    host = os.environ.get('DB_HOST')
+    port = os.environ.get('DB_PORT')
 
     # create connection
     url = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
     engine = create_engine(url)
-    ##conn = psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
 
     df_i.to_sql(table_name, con=engine, schema='bronze', if_exists='replace', index=False)
 
