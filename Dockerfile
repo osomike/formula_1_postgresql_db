@@ -18,7 +18,7 @@ ENV FLYWAY_SCHEMAS=bronze,silver,gold,flyway
 
 ENV FLYWAY_URL=jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
 ENV FLYWAY_LOCATIONS=filesystem:/flyway/sql/
-ENV FLYWAY_CONNECT_RETRIES=5
+ENV FLYWAY_CONNECT_RETRIES=3
 ENV FLYWAY_CLEAN_DISABLED=false
 ENV FLYWAY_CLEAN=true
 ENV FLYWAY_MIGRATE=true
