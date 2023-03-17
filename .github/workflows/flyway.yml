@@ -27,21 +27,29 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v3
 
-      - uses: joshuaavalon/flyway-action@v3.0.0
-        with:
-          url: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
-          user: ${{ secrets.DB_USER }}
-          password: ${{ secrets.DB_PASSWORD }}
-          locations: filesystem:flyway/
-        env:
-#          FLYWAY_USER: $FLYWAY_USER
-#          FLYWAY_PASSWORD: $FLYWAY_PASSWORD
-          FLYWAY_DEFAULT_SCHEMA: flyway
-          FLYWAY_CREATE_SCHEMA: true
-          FLYWAY_SCHEMAS: bronze,silver,gold,flyway
-#          FLYWAY_URL: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
-#          FLYWAY_LOCATIONS: filesystem:/flyway/sql/
-          FLYWAY_CONNECT_RETRIES: 3
-          FLYWAY_CLEAN_DISABLED: false
-          FLYWAY_CLEAN: true
-          FLYWAY_MIGRATE: true
+      - uses: docker
+        using: 'docker'
+        image: 'Dockerfile'
+        build-args:
+          DB_USER=${{ secrets.DB_USER }}
+        args:
+          - migrate
+
+
+#        with:
+#          url: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
+#          user: ${{ secrets.DB_USER }}
+#          password: ${{ secrets.DB_PASSWORD }}
+#          locations: filesystem:flyway/schemas,filesystem:flyway/tables
+#        env:
+##          FLYWAY_USER: $FLYWAY_USER
+##          FLYWAY_PASSWORD: $FLYWAY_PASSWORD
+#          FLYWAY_DEFAULT_SCHEMA: flyway
+#          FLYWAY_CREATE_SCHEMA: true
+#          FLYWAY_SCHEMAS: bronze,silver,gold,flyway
+##          FLYWAY_URL: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
+##          FLYWAY_LOCATIONS: filesystem:/flyway/sql/
+#          FLYWAY_CONNECT_RETRIES: 3
+#          FLYWAY_CLEAN_DISABLED: false
+#          FLYWAY_CLEAN: true
+#          FLYWAY_MIGRATE: true
