@@ -1,20 +1,20 @@
 CREATE TABLE bronze.results (
-	resultId INTEGER,
-	raceId INTEGER,
-	driverId INTEGER,
-	constructorId INTEGER,
+	resultid INTEGER PRIMARY KEY,
+	raceid INTEGER,
+	driverid INTEGER,
+	constructorid INTEGER,
 	number FLOAT,
 	grid INTEGER,
 	position FLOAT,
-	positionText TEXT,
-	positionOrder INTEGER,
+	positiontext TEXT,
+	positionorder INTEGER,
 	points FLOAT,
 	laps INTEGER,
 	time TEXT,
 	milliseconds FLOAT,
-	fastestLap FLOAT,
+	fastestlap FLOAT,
 	rank FLOAT,
-	fastestLapTime TEXT,
-	fastestLapSpeed FLOAT,
-	statusId INTEGER
-)
+	fastestlaptime TEXT,
+	fastestlapspeed FLOAT,
+	statusid INTEGER
+);
