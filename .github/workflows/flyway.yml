@@ -5,12 +5,14 @@ name: flyway-migration
 # Controls when the workflow will run
 on:
 
-  workflow_dispatch:
-    inputs:
-      flyway-clean:
-        type: boolean
-        required: true
-        default: false
+  push:
+    branches: [ "develop" ]
+#  workflow_dispatch:
+#    inputs:
+#      flyway-clean:
+#        type: boolean
+#        required: true
+#        default: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,13 +29,9 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v3
 
-      - uses: docker
-        using: 'docker'
-        image: 'Dockerfile'
-        build-args:
-          DB_USER=${{ secrets.DB_USER }}
-        args:
-          - migrate
+      - name: update index
+        run: echo "::error file=app.js,line=1::Missing semicolon"
+             apt-get update
 
 
 #        with:
