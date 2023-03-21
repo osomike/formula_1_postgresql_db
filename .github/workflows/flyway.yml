@@ -50,7 +50,27 @@ jobs:
       - name: install docker
         run: |
           sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-          docker run hello-world
+
+      - name: build Dockerfile
+        run: |
+          docker build \
+          --build-arg DB_USER=${{ secrets.DB_USER }} \
+          --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+          --build-arg DB_HOST=${{ secrets.DB_HOST }} \
+          --build-arg DB_PORT=${{ secrets.DB_PASSWORD }} \
+          --build-arg DB_NAME=${{ secrets.DB_PORT }} \
+          --build-arg FLYWAY_CLEAN=true \
+          --build-arg FLYWAY_MIGRATE=true \
+          . -t flyway-db:0.1
+
+      - name: check docker images
+        run: |
+          docker images
+
+      - name: run docker image
+        run: |
+          # docker run flyway-db:0.1
+
 #        with:
 #          url: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
 #          user: ${{ secrets.DB_USER }}
