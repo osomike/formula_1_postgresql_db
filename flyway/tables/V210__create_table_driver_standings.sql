@@ -1,9 +1,9 @@
 CREATE TABLE bronze.driver_standings (
-	driverStandingsId INTEGER,
-	raceId INTEGER,
-	driverId INTEGER,
+	driverstandingsid INTEGER PRIMARY KEY,
+	raceid INTEGER,
+	driverid INTEGER,
 	points FLOAT,
 	position INTEGER,
-	positionText TEXT,
+	positiontext TEXT,
 	wins INTEGER
-)
+);

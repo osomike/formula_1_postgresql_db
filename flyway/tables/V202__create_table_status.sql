@@ -1,4 +1,4 @@
 CREATE TABLE bronze.status (
-	statusId INTEGER,
+	statusid INTEGER PRIMARY KEY,
 	status TEXT
-)
+);

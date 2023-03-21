@@ -1,7 +1,7 @@
 CREATE TABLE bronze.constructor_results (
-	constructorResultsId INTEGER,
-	raceId INTEGER,
-	constructorId INTEGER,
+	constructorresultsid INTEGER PRIMARY KEY,
+	raceid INTEGER,
+	constructorid INTEGER,
 	points FLOAT,
 	status TEXT
-)
+);

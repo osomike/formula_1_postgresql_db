@@ -1,4 +1,4 @@
 CREATE TABLE bronze.seasons (
-	year INTEGER,
+	year INTEGER PRIMARY KEY,
 	url TEXT
-)
+);

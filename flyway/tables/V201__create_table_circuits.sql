@@ -1,6 +1,6 @@
 CREATE TABLE bronze.circuits (
-	circuitId INTEGER,
-	circuitRef TEXT,
+	circuitid INTEGER PRIMARY KEY,
+	circuitref TEXT,
 	name TEXT,
 	location TEXT,
 	country TEXT,
@@ -8,4 +8,4 @@ CREATE TABLE bronze.circuits (
 	lng FLOAT,
 	alt FLOAT,
 	url TEXT
-)
+);

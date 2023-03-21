@@ -1,7 +1,7 @@
 CREATE TABLE bronze.constructors (
-	constructorId INTEGER,
-	constructorRef TEXT,
+	constructorid INTEGER PRIMARY KEY,
+	constructorref TEXT,
 	name TEXT,
 	nationality TEXT,
 	url TEXT
-)
+);

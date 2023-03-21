@@ -1,6 +1,6 @@
 CREATE TABLE bronze.drivers (
-	driverId INTEGER,
-	driverRef TEXT,
+	driverid INTEGER PRIMARY KEY,
+	driverref TEXT,
 	number FLOAT,
 	code TEXT,
 	forename TEXT,
@@ -8,4 +8,4 @@ CREATE TABLE bronze.drivers (
 	dob TEXT,
 	nationality TEXT,
 	url TEXT
-)
+);

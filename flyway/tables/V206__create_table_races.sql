@@ -1,8 +1,8 @@
 CREATE TABLE bronze.races (
-	raceId INTEGER,
+	raceid INTEGER PRIMARY KEY,
 	year INTEGER,
 	round INTEGER,
-	circuitId INTEGER,
+	circuitid INTEGER,
 	name TEXT,
 	date TEXT,
 	time TEXT,
@@ -17,4 +17,4 @@ CREATE TABLE bronze.races (
 	quali_time TEXT,
 	sprint_date TEXT,
 	sprint_time TEXT
-)
+);
