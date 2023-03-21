@@ -5,14 +5,12 @@ name: flyway-migration
 # Controls when the workflow will run
 on:
 
-  push:
-    branches: [ "develop" ]
-#  workflow_dispatch:
-#    inputs:
-#      flyway-clean:
-#        type: boolean
-#        required: true
-#        default: false
+  workflow_dispatch:
+    inputs:
+      flyway-clean:
+        type: boolean
+        required: true
+        default: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -59,7 +57,7 @@ jobs:
           --build-arg DB_HOST="${{ vars.DB_HOST }}" \
           --build-arg DB_PORT="${{ vars.DB_PORT }}" \
           --build-arg DB_NAME="${{ vars.DB_NAME }}" \
-          --build-arg FLYWAY_CLEAN=false \
+          --build-arg FLYWAY_CLEAN="${{ inputs.flyway-clean }}" \
           --build-arg FLYWAY_MIGRATE=true \
           . -t flyway-db:0.1
 
