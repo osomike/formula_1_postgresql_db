@@ -1,5 +1,6 @@
 
 ALTER TABLE bronze.races ADD CONSTRAINT fk_races_circuitid FOREIGN KEY (circuitid) REFERENCES bronze.circuits(circuitid);
+ALTER TABLE bronze.races ADD CONSTRAINT fk_races_year FOREIGN KEY (year) REFERENCES bronze.seasons(year);
 
 ALTER TABLE bronze.sprint_results ADD CONSTRAINT fk_sprint_results_raceid FOREIGN KEY (raceid) REFERENCES bronze.races(raceid);
 ALTER TABLE bronze.sprint_results ADD CONSTRAINT fk_sprint_results_driverid FOREIGN KEY (driverid) REFERENCES bronze.drivers(driverid);
