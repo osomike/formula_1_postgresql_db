@@ -57,8 +57,8 @@ jobs:
           --build-arg DB_USER=${{ secrets.DB_USER }} \
           --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
           --build-arg DB_HOST=${{ vars.DB_HOST }} \
-          --build-arg DB_PORT=${{ vars.DB_PASSWORD }} \
-          --build-arg DB_NAME=${{ vars.DB_PORT }} \
+          --build-arg DB_PORT=${{ vars.DB_PORT }} \
+          --build-arg DB_NAME=${{ vars.DB_NAME }} \
           --build-arg FLYWAY_CLEAN=false \
           --build-arg FLYWAY_MIGRATE=true \
           . -t flyway-db:0.1
