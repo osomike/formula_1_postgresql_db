@@ -29,46 +29,39 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v3
 
-      - name: test
+      - name: install dependencies
         run: |
-          echo ${{ vars.DB_PORT }}
-          echo ${{ vars.DB_NAME }}
-          echo ${{ vars.DB_HOST }}
-          echo ${{ secrets.DB_USER }}
-          echo ${{ secrets.DB_PASSWORD }}
-#      - name: install dependencies
-#        run: |
-#          sudo apt-get install ca-certificates curl gnupg lsb-release -y
-#
-#      - name: add officials docker x
-#        run: |
-#          mkdir -m 0755 -p /etc/apt/keyrings
-#          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-#
-#      - name: Setup docker rep
-#        run: |
-#          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-#          $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-#
-#      - name: update index
-#        run: |
-#          sudo apt-get update
-#
-#      - name: install docker
-#        run: |
-#          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-#
-#      - name: build Dockerfile
-#        run: |
-#          docker build \
-#          --build-arg DB_USER="${{ secrets.DB_USER }}" \
-#          --build-arg DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-#          --build-arg DB_HOST="${{ vars.DB_HOST }}" \
-#          --build-arg DB_PORT="${{ vars.DB_PORT }}" \
-#          --build-arg DB_NAME="${{ vars.DB_NAME }}" \
-#          --build-arg FLYWAY_CLEAN=false \
-#          --build-arg FLYWAY_MIGRATE=true \
-#          . -t flyway-db:0.1
+          sudo apt-get install ca-certificates curl gnupg lsb-release -y
+
+      - name: add officials docker x
+        run: |
+          mkdir -m 0755 -p /etc/apt/keyrings
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+      - name: Setup docker rep
+        run: |
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+          $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      - name: update index
+        run: |
+          sudo apt-get update
+
+      - name: install docker
+        run: |
+          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+      - name: build Dockerfile
+        run: |
+          docker build \
+          --build-arg DB_USER="${{ secrets.DB_USER }}" \
+          --build-arg DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+          --build-arg DB_HOST="${{ vars.DB_HOST }}" \
+          --build-arg DB_PORT="${{ vars.DB_PORT }}" \
+          --build-arg DB_NAME="${{ vars.DB_NAME }}" \
+          --build-arg FLYWAY_CLEAN=false \
+          --build-arg FLYWAY_MIGRATE=true \
+          . -t flyway-db:0.1
 
       - name: check docker images
         run: |
@@ -78,20 +71,3 @@ jobs:
         run: |
           docker run flyway-db:0.1
 
-#        with:
-#          url: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
-#          user: ${{ secrets.DB_USER }}
-#          password: ${{ secrets.DB_PASSWORD }}
-#          locations: filesystem:flyway/schemas,filesystem:flyway/tables
-#        env:
-##          FLYWAY_USER: $FLYWAY_USER
-##          FLYWAY_PASSWORD: $FLYWAY_PASSWORD
-#          FLYWAY_DEFAULT_SCHEMA: flyway
-#          FLYWAY_CREATE_SCHEMA: true
-#          FLYWAY_SCHEMAS: bronze,silver,gold,flyway
-##          FLYWAY_URL: jdbc:postgresql://dip-analytics-engineer-training-postgresql.postgres.database.azure.com:5432/ae_training
-##          FLYWAY_LOCATIONS: filesystem:/flyway/sql/
-#          FLYWAY_CONNECT_RETRIES: 3
-#          FLYWAY_CLEAN_DISABLED: false
-#          FLYWAY_CLEAN: true
-#          FLYWAY_MIGRATE: true
